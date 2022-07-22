@@ -24,13 +24,28 @@ dst = cv.cornerHarris(gray, 2, 3, 0.04)
 uv_harris[dst>0.01*dst.max()] = [0,0,255] #makes corner points red
 
 # Py Shi Tomasi
-corners = cv.goodFeaturesToTrack(gray, 18, 0.01, 10) # 18 is number of corners to track
+corners = cv.goodFeaturesToTrack(gray, 2, 0.01, 10) # 18 is number of corners to track
 corners = np.int0(corners) # don't forget this line. Research this line further.
 
 for i in corners:
     x,y = i.ravel()
     cv.circle(uv_pyshitomasi,(x,y),3,255,-1)
 
+# TODO: Lazy algorithm to get distance between two corner points. Assume all UV faces have same dimensions.
+# Distance between two points = dimension for UV face.
+# use Euclidean distance. (This works because perfect square. May not work for more complex shapes?)
+# FIRST! Identify which two points are closest. Sort the array of corners in asscending x order.
+# I am lazy and notice that I don't need to do the above yet, as points are sorted into neat pairs.
+# Lazy should definitely be my search key word for fixing sloppy code.
+column_index = 1
+corners_array = np.array(corners)
+#corners_sorted = corners_array[corners_array[:,[column_index].argsort()]]
+dist = np.linalg.norm(corners[0] - corners[1]) # distance between first and second point
+#TODO: distance between points must return integer. This all could likely be a function.
+# EXERCISE FOR FUN: Find distance between all points. Sort distances in asscending order.
+
+
+# DISPLAY!
 cv.imshow('Original UV', uv_original)
 # Harris
 #cv.imshow('Harris', uv_harris)
@@ -40,5 +55,13 @@ cv.imshow('Original UV', uv_original)
 cv.imshow('Py Shi Tomasi UV', uv_pyshitomasi)
 plt.imshow(uv_pyshitomasi)
 
+print(corners)
+print(corners_array)
+print("Corners type: ", type(corners))
+print("Distance between points: ", dist)
+
 if cv.waitKey(0) & 0xff == 27:
     cv.destroyAllWindows()
+
+#Noted issue: With Py Shi Tomasi detection, do not get the same exact row or column when it should line up.
+# ex.  256 & 257
