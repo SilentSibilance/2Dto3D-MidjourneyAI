@@ -24,7 +24,7 @@ dst = cv.cornerHarris(gray, 2, 3, 0.04)
 uv_harris[dst>0.01*dst.max()] = [0,0,255] #makes corner points red
 
 # Py Shi Tomasi
-corners = cv.goodFeaturesToTrack(gray, 2, 0.01, 10) # 18 is number of corners to track
+corners = cv.goodFeaturesToTrack(gray, 6, 0.01, 10) # 18 is number of corners to track
 corners = np.int0(corners) # don't forget this line. Research this line further.
 
 for i in corners:
@@ -38,8 +38,11 @@ for i in corners:
 # I am lazy and notice that I don't need to do the above yet, as points are sorted into neat pairs.
 # Lazy should definitely be my search key word for fixing sloppy code.
 column_index = 1
-corners_array = np.array(corners)
-#corners_sorted = corners_array[corners_array[:,[column_index].argsort()]]
+corners_list = corners.tolist()
+corners_sorted = sorted(corners_list)
+
+
+
 dist = np.linalg.norm(corners[0] - corners[1]) # distance between first and second point
 #TODO: distance between points must return integer. This all could likely be a function.
 # EXERCISE FOR FUN: Find distance between all points. Sort distances in asscending order.
@@ -56,7 +59,8 @@ cv.imshow('Py Shi Tomasi UV', uv_pyshitomasi)
 plt.imshow(uv_pyshitomasi)
 
 print(corners)
-print(corners_array)
+print("Corners unsorted list: ", corners_list)
+print("Corners sorted array:", corners_sorted)
 print("Corners type: ", type(corners))
 print("Distance between points: ", dist)
 
