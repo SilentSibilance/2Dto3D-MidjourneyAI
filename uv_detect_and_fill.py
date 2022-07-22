@@ -24,7 +24,7 @@ dst = cv.cornerHarris(gray, 2, 3, 0.04)
 uv_harris[dst>0.01*dst.max()] = [0,0,255] #makes corner points red
 
 # Py Shi Tomasi
-corners = cv.goodFeaturesToTrack(gray, 6, 0.01, 10) # 18 is number of corners to track
+corners = cv.goodFeaturesToTrack(gray, 14, 0.01, 10) # 18 is number of corners to track
 corners = np.int0(corners) # don't forget this line. Research this line further.
 
 for i in corners:
@@ -38,8 +38,31 @@ for i in corners:
 # I am lazy and notice that I don't need to do the above yet, as points are sorted into neat pairs.
 # Lazy should definitely be my search key word for fixing sloppy code.
 column_index = 1
-corners_list = corners.tolist()
+corners_list = corners.tolist() #list of lists. Note this goes 3 layers deep, with extraneous layer around coordinate pair.
 corners_sorted = sorted(corners_list)
+#corners_sorted = np.asarray(corners_sorted) #sloppy conversion back to array
+
+# Clean up corner points data. Artifacts left in from corner detection algorithm will not always correctly place two corners with the same x (or y) value correctly and may be off by one.
+#Noted issue: With Py Shi Tomasi detection, do not get the same exact row or column when it should line up.
+# ex.  256 & 257
+# Iterate through sorted corners list. When two points are off by 1 ONLY, set higher value to lower. ex 257 -> 256. Perform for both x and y.
+# Comparing corners_sorted[0] to corners_sorted[1], etc.
+# Decreasing corners_sorted[1] by 1 if needed.
+for count, i in enumerate(corners_sorted[:-1], start=1): # i is higher value. List sliced to be one less than length.
+    #print(i.dtype)
+    print("pair")
+    print(i[0][0])
+    print(corners_sorted[count][0][0])
+    if i[0][0] + 1 == corners_sorted[count][0][0]:
+        #i[0][0] = i[0][0]-1
+        corners_sorted[count][0][0] = corners_sorted[count][0][0] - 1
+
+print("list type: ")
+print(corners_list[2][0][1])
+#for b in corners_list:
+#    print(type(b))
+
+
 
 
 
@@ -58,7 +81,7 @@ cv.imshow('Original UV', uv_original)
 cv.imshow('Py Shi Tomasi UV', uv_pyshitomasi)
 plt.imshow(uv_pyshitomasi)
 
-print(corners)
+#print(corners)
 print("Corners unsorted list: ", corners_list)
 print("Corners sorted array:", corners_sorted)
 print("Corners type: ", type(corners))
@@ -67,5 +90,5 @@ print("Distance between points: ", dist)
 if cv.waitKey(0) & 0xff == 27:
     cv.destroyAllWindows()
 
-#Noted issue: With Py Shi Tomasi detection, do not get the same exact row or column when it should line up.
-# ex.  256 & 257
+# TODO: Handle cases where corner dectection is off by 2 pixels.
+# TODO: Handle y coordinate sorting and corner artifact smoothing.
