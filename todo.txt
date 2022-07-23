@@ -1,0 +1,3 @@
+TODO - GENERAL TODO LIST ACROSS PROJECT
+
+Refactor uv_detect scripts with functions. 
