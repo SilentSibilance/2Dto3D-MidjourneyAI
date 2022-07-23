@@ -70,8 +70,10 @@ def find_distance(corners):
     face_length = distances[0]
     return face_length
 
-# CALL FUNCTIONS
-face_len = find_distance(find_corners())
+# CALL FUNCTIONS!
+corners = find_corners()
+face_len = find_distance(corners)
+
 
 # DISPLAY!
 cv.imshow('Original UV', uv_original)

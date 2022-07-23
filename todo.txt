@@ -1,3 +1,8 @@
 TODO - GENERAL TODO LIST ACROSS PROJECT
 
-Refactor uv_detect scripts with functions. 
+Refactor uv_detect_and_fill script with functions.
+
+
+=======
+COMPLETED:
+Refactor uv_detect_smallest_distance script with functions.
