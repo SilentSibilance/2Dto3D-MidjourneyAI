@@ -1,6 +1,11 @@
 TODO - GENERAL TODO LIST ACROSS PROJECT
 
 Refactor uv_detect_and_fill script with functions.
+Identify top left corner for each uv face. Label with appropriate side.
+
+Create texture file from uv.
+  - scale MidjourneyAI images to match uv face size.
+  - attach images to texture file at uv faces.
 
 
 =======

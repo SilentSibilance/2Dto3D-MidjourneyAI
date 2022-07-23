@@ -74,10 +74,12 @@ cv.imshow('Py Shi Tomasi UV', uv_pyshitomasi)
 plt.imshow(uv_pyshitomasi)
 
 #print(corners)
-print("Corners unsorted list: ", corners_list)
-print("Corners sorted array:", corners_sorted)
-print("Corners type: ", type(corners))
-print("Distance between points: ", dist)
+#print("Corners unsorted list: ", corners_list)
+#print("Corners sorted array:", corners_sorted)
+#print("Corners type: ", type(corners))
+#print("Distance between points: ", dist)
+
+print("dst:   ", dst.max())
 
 if cv.waitKey(0) & 0xff == 27:
     cv.destroyAllWindows()
