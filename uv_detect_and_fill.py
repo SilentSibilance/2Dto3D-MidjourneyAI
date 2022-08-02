@@ -9,7 +9,7 @@ import cv2 as cv
 import numpy as np
 from matplotlib import pyplot as plt
 
-input_uv = 'Cube_UV.png'
+input_uv = 'Cube_UV_condensed.png'
 uv_original = cv.imread(input_uv)
 uv_harris = cv.imread(input_uv)
 uv_pyshitomasi = cv.imread(input_uv)
