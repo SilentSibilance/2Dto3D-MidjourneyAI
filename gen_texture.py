@@ -18,8 +18,8 @@ import cv2 as cv
 import numpy as np
 from matplotlib import pyplot as plt
 
-ROI_edge_length = 251
-ROI_offset = [(129, 257), (385, 2), (385, 257), (385, 511), (385, 769), (639, 257)]
+ROI_edge_length = 254
+ROI_offset = [(129, 257), (385, 2), (385, 257), (385, 513), (385, 769), (639, 257)]
 
 uv_img = cv.imread("Cube_UV_condensed.png")
 img0 = cv.imread("2-0.png")
@@ -34,12 +34,12 @@ img1_s = cv.resize(img1,(ROI_edge_length, ROI_edge_length))
 img2_s = cv.resize(img2,(ROI_edge_length, ROI_edge_length))
 img3_s = cv.resize(img3,(ROI_edge_length, ROI_edge_length))
 
-
+# Note: We flip x and y coordinate. For some reason, needed.
 # Apply 4 MidjourneyAI images to 4 UV faces of cube.
-uv_img[129:(129+ROI_edge_length), 257:(257+ROI_edge_length)] = img0_s
-uv_img[385:(636), 2:253] = img1_s
-uv_img[385:(385+ROI_edge_length), 257:(257+ROI_edge_length)] = img2_s
-uv_img[385:(385+ROI_edge_length), 511:(511+ROI_edge_length)] = img3_s
+uv_img[257:(257+ROI_edge_length), 129:(129+ROI_edge_length)] = img0_s
+uv_img[2:256, 385:(639)] = img1_s
+uv_img[257:(257+ROI_edge_length), 385:(385+ROI_edge_length)] = img2_s
+uv_img[513:(513+ROI_edge_length), 385:(385+ROI_edge_length)] = img3_s
 
 cv.imwrite('Cube_UV_w_textures.png', uv_img)
 
