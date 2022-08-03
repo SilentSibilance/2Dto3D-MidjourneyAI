@@ -13,6 +13,7 @@ input_uv = 'Cube_UV_condensed.png'
 uv_original = cv.imread(input_uv)
 uv_harris = cv.imread(input_uv)
 uv_pyshitomasi = cv.imread(input_uv)
+uv_corner_checker = cv.imread(input_uv)
 
 # Create gayscale version of image.
 gray = cv.cvtColor(uv_original, cv.COLOR_BGR2GRAY)
@@ -24,7 +25,7 @@ dst = cv.cornerHarris(gray, 2, 3, 0.04)
 uv_harris[dst>0.01*dst.max()] = [0,0,255] #makes corner points red
 
 # Py Shi Tomasi
-corners = cv.goodFeaturesToTrack(gray, 14, 0.01, 10) # 18 is number of corners to track
+corners = cv.goodFeaturesToTrack(gray, 18, 0.01, 10) # 18 is number of corners to track
 corners = np.int0(corners) # don't forget this line. Research this line further.
 
 for i in corners:
@@ -73,7 +74,7 @@ cv.imshow('Original UV', uv_original)
 cv.imshow('Py Shi Tomasi UV', uv_pyshitomasi)
 plt.imshow(uv_pyshitomasi)
 
-#print(corners)
+print(corners)
 #print("Corners unsorted list: ", corners_list)
 #print("Corners sorted array:", corners_sorted)
 #print("Corners type: ", type(corners))
