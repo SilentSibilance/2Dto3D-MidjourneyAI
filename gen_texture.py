@@ -34,7 +34,7 @@ def add_imgs_to_uv(name, images):
     img1 = images[1]
     img2 = images[2]
     img3 = images[3]
-    
+
 
     print(img0.shape)
     # Check input image matches size of ROI. Resize if necessary. Assume you need to resize all images, as non-resized images will not end up modified anyways.
@@ -43,12 +43,27 @@ def add_imgs_to_uv(name, images):
     img2_s = cv.resize(img2,(ROI_edge_length, ROI_edge_length))
     img3_s = cv.resize(img3,(ROI_edge_length, ROI_edge_length))
 
+    # Rotate 4 faces images -90 degrees to appear upright on cube.
+    # grab the dimensions of the image and calculate the center of the
+    # image
+    (h, w) = img3_s.shape[:2]
+    (cX, cY) = (w // 2, h // 2)
+
+    # rotate our image by -90 degrees around the image
+    M = cv.getRotationMatrix2D((cX, cY), -90, 1.0)
+    img0_s = cv.warpAffine(img0_s, M, (w, h))
+    img1_s = cv.warpAffine(img1_s, M, (w, h))
+    img2_s = cv.warpAffine(img2_s, M, (w, h))
+    img3_s = cv.warpAffine(img3_s, M, (w, h))
+
+    #cv.imshow("Rotated by -90 Degrees", rotated)
+
     # Note: We flip x and y coordinate. For some reason, needed.
     # Apply 4 MidjourneyAI images to 4 UV faces of cube.
-    uv_img[257:(257+ROI_edge_length), 129:(129+ROI_edge_length)] = img0_s
-    uv_img[2:256, 385:(639)] = img1_s
-    uv_img[257:(257+ROI_edge_length), 385:(385+ROI_edge_length)] = img2_s
-    uv_img[513:(513+ROI_edge_length), 385:(385+ROI_edge_length)] = img3_s
+    uv_img[2:256, 385:(639)] = img0_s
+    uv_img[257:(257+ROI_edge_length), 385:(385+ROI_edge_length)] = img1_s
+    uv_img[513:(513+ROI_edge_length), 385:(385+ROI_edge_length)] = img2_s
+    uv_img[769:(769+ROI_edge_length), 385:(385+ROI_edge_length)] = img3_s
 
     uv_name = name + "_UV_w_textures.png"
     cv.imwrite(uv_name, uv_img)
