@@ -17,8 +17,9 @@ cube_obj.name = 'MyCube'
 #    z = randint(-10,10)
 #    bpy.ops.mesh.primitive_cube_add(location=(x,y,z))
 
+# Attach the created png to the material
 # Add Material
-bpy.ops.material.new()
+#bpy.ops.material.new()
 cube_mat_obj = bpy.data.materials.new(cube_obj.name + '-Material')
 cube_mat_obj.use_nodes = True
 
@@ -30,11 +31,7 @@ cube_mat_obj.node_tree.links.new(bsdf.inputs['Base Color'], texImage.outputs['Co
 cube_obj.data.materials.append(cube_mat_obj)
 
 
-#TODO: attach the created png to the material
-
-#TODO: export as fbx
-#directory = bpy.context.scene.file_path
-
+# Export as fbx
 # export to blend file location
 basedir = os.path.dirname(bpy.data.filepath)
 
@@ -45,5 +42,3 @@ name = bpy.path.clean_name(cube_obj.name)
 fn = os.path.join(basedir, name)
 
 bpy.ops.export_scene.fbx(filepath=fn + ".fbx", use_selection=True)
-
-#bpy.ops.export_scene.fbx(filepath = "C:\"")
