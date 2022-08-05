@@ -4,11 +4,12 @@ Refactor uv_detect_and_fill script with functions.
 Identify top left corner for each uv face. Label with appropriate side.
 
 
-Fill in GitHub project description & add graphics. Provide better snapshot of current project state, future steps and stretch goals. 
+Fill in GitHub project description & add graphics. Provide better snapshot of current project state, future steps and stretch goals.
 
-Refactor to main.py, to run through all scripts automatically. Input a 4 image Midjourney png, output a cube texture png. 
+Apply images to correct cube faces.
+Apply correct rotation to cube face images. 
 
-Apply the cube texture png to a cube mesh via code and export as fbx. 
+
 
 Adapt code to allow a dynamic number of images from 1-6 (currently MUST be given 4 images).
 
@@ -19,3 +20,6 @@ Refactor uv_detect_smallest_distance script with functions.
 Create texture file from uv.
   - scale MidjourneyAI images to match uv face size.
   - attach images to texture file at uv faces.
+
+Apply the cube texture png to a cube mesh via code and export as fbx.
+Refactor to main.py, to run through all scripts automatically. Input a 4 image Midjourney png, output a cube texture png.  (With compromise that can't be completely automatic, requires both external python script and blender script.)
