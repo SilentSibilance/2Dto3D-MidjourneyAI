@@ -1,0 +1,5 @@
+QUESTIONS:
+
+Can you run Blender from within the python script? (Assuming the user has Python installed on their computer. Will this work on all OS?)
+
+Are there Python libraries for working with 3D objects in standard file formats?x

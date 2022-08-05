@@ -18,21 +18,26 @@ print(rows)
 mid_rows = rows//2 # want floor division
 mid_cols = cols//2
 
-print(mid_rows)
-print(mid_cols)
+#print(mid_rows)
+#print(mid_cols)
+def separate_imgs():
+    # Creates 4 separate images, from the respective 4 quadrants of the original image.
+    img0 = img[0:mid_cols,0:mid_rows]
+    img1 = img[mid_cols:cols,0:mid_rows]
+    img2 = img[0:mid_cols,mid_rows:rows]
+    img3 = img[mid_cols:cols,mid_rows:rows]
 
-# Creates 4 separate images, from the respective 4 quadrants of the original image.
-img0 = img[0:mid_cols,0:mid_rows]
-img1 = img[mid_cols:cols,0:mid_rows]
-img2 = img[0:mid_cols,mid_rows:rows]
-img3 = img[mid_cols:cols,mid_rows:rows]
+    # Write the 4 new images to directory.
+    cv.imwrite('2-0.png', img0)
+    cv.imwrite('2-1.png', img1)
+    cv.imwrite('2-2.png', img2)
+    cv.imwrite('2-3.png', img3)
+    
+    # Create a list of all images (without writing to the directory).
+    images = [img0, img1, img2, img3]
 
-# Write the 4 new images to directory.
-cv.imwrite('2-0.png', img0)
-cv.imwrite('2-1.png', img1)
-cv.imwrite('2-2.png', img2)
-cv.imwrite('2-3.png', img3)
-
-print('Converted to 4 images and saved.')
+    print('Converted to 4 images and saved.')
+    
+    return images
 
 #TODO: Make code generic so can be fed any image. Or loops through all image names in a range.
