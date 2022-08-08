@@ -10,7 +10,8 @@ print (cv.__version__)
 #print (numpy._version)
 
 # Note - Samples Images begins at '2'. This is an artifact of when I was downloading images, and the order they loaded on Discord. Not all images on the Discord are sets of 4. Some are single images.
-img_path = 'sample-images/2.png'
+img_path = 'red_room.png'
+#img_path = 'sample-images/2.png'
 img = cv.imread(img_path)
 shape = img.shape
 rows, cols, channels = shape
@@ -28,16 +29,16 @@ def separate_imgs():
     img3 = img[mid_cols:cols,mid_rows:rows]
 
     # Write the 4 new images to directory.
-    cv.imwrite('2-0.png', img0)
-    cv.imwrite('2-1.png', img1)
-    cv.imwrite('2-2.png', img2)
-    cv.imwrite('2-3.png', img3)
-    
+    #cv.imwrite('2-0.png', img0)
+    #cv.imwrite('2-1.png', img1)
+    #cv.imwrite('2-2.png', img2)
+    #cv.imwrite('2-3.png', img3)
+
     # Create a list of all images (without writing to the directory).
     images = [img0, img1, img2, img3]
 
     print('Converted to 4 images and saved.')
-    
+
     return images
 
 #TODO: Make code generic so can be fed any image. Or loops through all image names in a range.

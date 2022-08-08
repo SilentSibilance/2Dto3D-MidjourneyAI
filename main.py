@@ -18,7 +18,7 @@ import gen_texture
 #new_name = args.foo
 #print(new_name)
 
-name = "puffin"
+name = "red_room"
 
 images = quarter_image.separate_imgs()
 gen_texture.add_imgs_to_uv(name, images)

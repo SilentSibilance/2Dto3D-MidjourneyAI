@@ -17,6 +17,9 @@ cube_obj.name = 'MyCube'
 #    z = randint(-10,10)
 #    bpy.ops.mesh.primitive_cube_add(location=(x,y,z))
 
+# Scale the cube - OPTIONAL
+#cube_obj.scale = (1,1,2)
+
 # Attach the created png to the material
 # Add Material
 #bpy.ops.material.new()
@@ -26,7 +29,7 @@ cube_mat_obj.use_nodes = True
 bsdf = cube_mat_obj.node_tree.nodes["Principled BSDF"]
 texImage = cube_mat_obj.node_tree.nodes.new('ShaderNodeTexImage')
 #bpy.ops.image.open('shark_UV_w_textures.png')
-texImage.image = bpy.data.images.load(filepath = '//puffin_UV_w_textures.png')#(allow_path_tokens=True, filepath='', directory='', files=None, hide_props_region=True, filter_blender=False, filter_backup=False, filter_image=True, filter_movie=True, filter_python=False, filter_font=False, filter_sound=False, filter_text=False, filter_archive=False, filter_btx=False, filter_collada=False, filter_alembic=False, filter_usd=False, filter_obj=False, filter_volume=False, filter_folder=True, filter_blenlib=False, filemode=9, relative_path=True, show_multiview=False, use_multiview=False, display_type='DEFAULT', sort_method='', use_sequence_detection=True, use_udim_detecting=True)
+texImage.image = bpy.data.images.load(filepath = '//red_room_3_UV_w_textures.png')#(allow_path_tokens=True, filepath='', directory='', files=None, hide_props_region=True, filter_blender=False, filter_backup=False, filter_image=True, filter_movie=True, filter_python=False, filter_font=False, filter_sound=False, filter_text=False, filter_archive=False, filter_btx=False, filter_collada=False, filter_alembic=False, filter_usd=False, filter_obj=False, filter_volume=False, filter_folder=True, filter_blenlib=False, filemode=9, relative_path=True, show_multiview=False, use_multiview=False, display_type='DEFAULT', sort_method='', use_sequence_detection=True, use_udim_detecting=True)
 cube_mat_obj.node_tree.links.new(bsdf.inputs['Base Color'], texImage.outputs['Color'])
 cube_obj.data.materials.append(cube_mat_obj)
 
@@ -39,6 +42,7 @@ if not basedir:
     raise Exception("Blend file is not saved")
     
 name = bpy.path.clean_name(cube_obj.name)
-fn = os.path.join(basedir, name)
+#fn = os.path.join(basedir, name)
+fn = os.path.join(basedir, "red_room_3")
 
 bpy.ops.export_scene.fbx(filepath=fn + ".fbx", use_selection=True)

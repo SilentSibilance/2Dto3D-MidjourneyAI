@@ -6,12 +6,18 @@ Identify top left corner for each uv face. Label with appropriate side.
 
 Fill in GitHub project description & add graphics. Provide better snapshot of current project state, future steps and stretch goals.
 
-Apply images to correct cube faces.
-Apply correct rotation to cube face images. 
+Gather all fbx from folder into Blender.
+Randomly place models in Blender scene in small area.
 
+Randomly place fbx in Unity in small area (repeat of Blender option)
+Randomly place fbx in Unreal in small area (repeat of Blender option)
 
+Import full scene randomized fbx into Lens Studio for Snapchat.
 
 Adapt code to allow a dynamic number of images from 1-6 (currently MUST be given 4 images).
+
+Create "sphere primitive" version, isolating a spherical image from a MidjourneyAI image. Clone front and back.
+Blend edges of UV face using image processing.
 
 =======
 COMPLETED:
@@ -23,3 +29,5 @@ Create texture file from uv.
 
 Apply the cube texture png to a cube mesh via code and export as fbx.
 Refactor to main.py, to run through all scripts automatically. Input a 4 image Midjourney png, output a cube texture png.  (With compromise that can't be completely automatic, requires both external python script and blender script.)
+Apply images to correct cube faces.
+Apply correct rotation to cube face images.
