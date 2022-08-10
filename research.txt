@@ -1,1 +1,4 @@
 RESEARCH
+===-===
+
+- Research existing algorithms for mapping images to UV maps on GitHub.
