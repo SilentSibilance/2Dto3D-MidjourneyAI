@@ -6,8 +6,6 @@ Identify top left corner for each uv face. Label with appropriate side.
 
 Fill in GitHub project description & add graphics. Provide better snapshot of current project state, future steps and stretch goals.
 
-
-
 Randomly place fbx in Unity in small area (repeat of Blender option)
 Randomly place fbx in Unreal in small area (repeat of Blender option)
 
